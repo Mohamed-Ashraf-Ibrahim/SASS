@@ -1,0 +1,81 @@
+// TASK #1
+// Import arrow mixin
+@use "helpers/arrow_mixin" as *;
+
+// Import placeholder mixin
+@use "helpers/placeholder_mixin" as *;
+
+// Import flex center mixin
+@use "helpers/flex_center_mixin" as *;
+
+.element {
+  background-color: #ccc;
+  width: 300px;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 50px auto;
+  position: relative;
+  &:before {
+    @include arrow("top");
+  }
+}
+// --------------------------------------------
+// TASK #2
+
+$grid-cols: 16;
+@for $i from 1 through $grid-cols {
+  .col-#{$i} {
+    width: percentage($i / $grid-cols);
+  }
+}
+// --------------------------------------------
+// TASK #3
+$names: "books" 20 red 18, "games" 30 green 18, "dvds" 20 blue;
+
+@each $name, $padding, $border-color, $font-size in $names {
+  .#{$name} {
+    padding: $padding + px;
+    font-size: if($font-size == null, 16px, $font-size);
+    border-bottom: 2px solid $border-color;
+    color: #444;
+  }
+}
+// --------------------------------------------
+// TASK #4
+$init: 1;
+
+@while $init <= 5 {
+  .circle-#{$init * 100} {
+    width: $init * 100px;
+    height: $init * 100px;
+    border-radius: $init * 50px;
+  }
+  $init: $init + 1;
+}
+// --------------------------------------------
+// TASK #5
+$init: 1;
+@for $i from $init through 5 {
+  .circle-#{$init * 100} {
+    width: $init * 100px;
+    height: $init * 100px;
+    border-radius: $init * 50px;
+  }
+}
+// --------------------------------------------
+// TASK #6
+textarea {
+  @include placeholder {
+    color: #777;
+  }
+}
+// --------------------------------------------
+// TASK #7
+.box-one {
+  @include flex-center(400px);
+}
+.box-two {
+  @include flex-center;
+}

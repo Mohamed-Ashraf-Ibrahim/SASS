@@ -1,0 +1,175 @@
+// TASK #9
+
+// Import Helpers
+@use "./Project_Folder/Helpers/function";
+@use "./Project_Folder/Helpers/vars" as *;
+
+// Import Layout
+@use "./Project_Folder/Layout/footer";
+@use "./Project_Folder/Layout/header";
+
+// TASK #1
+.content {
+  > {
+    .box {
+      padding: 15px;
+      > .title {
+        font-size: 18px;
+      }
+    }
+  }
+  .cat {
+    padding: 15px;
+  }
+  &.premium:before {
+    content: "Premium Box";
+  }
+  &.premium:hover {
+    background-color: #eee;
+  }
+}
+// ------------------------------------------
+// TASK #2
+
+// First way
+.class {
+  > {
+    .child {
+      padding: 10px;
+    }
+  }
+}
+// Second Way
+.class {
+  > .child {
+    padding: 10px;
+  }
+}
+// Third Way
+.class {
+  .child {
+    padding: 10px;
+  }
+}
+// ------------------------------------------
+// TASK #3
+.class {
+  font: {
+    weight: bold;
+    size: 20px;
+  }
+}
+// ------------------------------------------
+// TASK #4
+// Select and style the first  sibling element immediately following .parent
+.parent + .sibling {
+  margin: auto;
+  margin-top: 10px;
+}
+// Select and style all elements with the class .last that are siblings of .parent and come after the .sibling element
+.parent + .sibling ~ .last {
+  padding: 10px;
+}
+// ------------------------------------------
+// TASK #5
+%common-styles {
+  background-color: white;
+  padding: 20px;
+}
+%border-style {
+  border: 1px solid #ccc;
+}
+.widget {
+  @extend %common-styles;
+}
+.main-border {
+  @extend %border-style;
+}
+.my-class {
+  @extend %common-styles;
+  @extend %border-style;
+  font-weight: bold;
+  margin: 20px auto;
+}
+// ------------------------------------------
+// TASK #6
+%widget {
+  background-color: white;
+  padding: 20px;
+}
+%main-border {
+  border: 1px solid #ccc;
+}
+%my-class {
+  font-weight: bold;
+  margin: 20px auto;
+}
+
+.my-class {
+  @extend %widget;
+  @extend %main-border;
+  @extend %my-class;
+}
+// ------------------------------------------
+// TASK #7
+$font-size: 20px;
+$mobile-max: 575px;
+
+// Base styles for .box h2 and .box p
+.box {
+  h2,
+  p {
+    font-size: $font-size;
+  }
+}
+
+// Media query for responsive styles
+@media (max-width: $mobile-max) {
+  .box h2,
+  .box p {
+    font-size: 16px;
+  }
+  .box h2 span,
+  .box p span {
+    font-weight: bold;
+  }
+}
+// ------------------------------------------
+// TASK #8
+// The Code
+// Do Not Edit Here
+$red: #e91e63;
+$green: #009688;
+
+$link-color: $red;
+$link-hover: $green;
+
+.box a {
+  color: $link-color;
+  &:hover {
+    color: $link-hover;
+  }
+}
+// ------------------------------------------
+//TASK #10
+%box-style {
+  font-size: 20px;
+}
+%holder-style {
+  font-size: 20px;
+}
+%content-style {
+  font-size: 20px;
+}
+
+.box {
+  @extend %box-style;
+}
+
+.box-holder {
+  @extend %holder-style;
+}
+
+.box-holder-content {
+  @extend %content-style;
+}

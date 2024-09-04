@@ -1,0 +1,33 @@
+// TASK #1
+// Import Functions
+
+$num: 2;
+$start: 100;
+
+@function double($size) {
+  @return $size * $num;
+}
+
+@for $i from 0 through 4 {
+  $current-size: $start * pow($num, $i);
+  .box-#{$current-size} {
+    width: #{$current-size}px;
+    height: #{double($current-size)}px;
+  }
+}
+// --------------------------------------------\
+// Task #2
+
+@function get-total($sizes...) {
+  $total: 0;
+
+  @each $size in $sizes {
+    $total: $size + $total;
+  }
+  @return $total;
+}
+
+.box {
+  top: get-total(100, 50, 20);
+  right: get-total(100, 50);
+}
